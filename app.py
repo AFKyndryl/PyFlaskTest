@@ -30,5 +30,13 @@ def add_to_basket(item_id):
     session.modified = True
     return redirect(url_for('home'))
 
+
+@app.route('/remove/<int:item_id>', methods=['POST'])
+def remove_from_basket(item_id):
+    if 'basket' in session and item_id in session['basket']:
+        session['basket'].remove(item_id)
+        session.modified = True
+    return redirect(url_for('home'))
+
 if __name__ == '__main__':
     app.run(debug=True)
