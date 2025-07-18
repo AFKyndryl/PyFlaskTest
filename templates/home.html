@@ -13,6 +13,21 @@
         <div class="menu-item">
             <h3>{{i.name}}</h3>
             <p>{{i.description}}</p>
+            <p>{{i.price}}</p>
+            
+            <form action="{{ url_for('add_to_basket', item_id=item.id) }}" method="post">
+                <button type="submit">Add to Basket</button>
+            </form>
+
+        </div>
+        {% endfor %}
+    </div>
+    <div class="basket">
+        {% for i in basket %}
+        <div class="basket-item">
+            <h3>{{i.name}}</h3>
+            <p>{{i.description}}</p>
+            <p>{{i.price}}</p>
         </div>
         {% endfor %}
     </div>
