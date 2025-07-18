@@ -12,20 +12,17 @@ class FlaskAppTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn('Spaghetti Carbonara', response.data.decode())
 
-    def test_home_page_fail(self):
-        """Should FAIL: 'Pizza Margherita' is NOT on the menu."""
+    def test_home_page_contains_menu(self):
+        """Should PASS: Menu contains at least one known item."""
         response = self.app.get('/')
-        self.assertIn('Pizza Margherita', response.data.decode())
+        self.assertTrue(any(dish in response.data.decode() for dish in [
+            'Spaghetti Carbonara', 'Penne Arrabbiata', 'Fettuccine Alfredo'
+        ]))
 
-    def test_invalid_route_pass(self):
+    def test_invalid_route_returns_404(self):
         """Should PASS: /nonexistent should return 404."""
         response = self.app.get('/nonexistent')
         self.assertEqual(response.status_code, 404)
-
-    def test_invalid_status_code_fail(self):
-        """Should FAIL: expecting 200 from a 404 route."""
-        response = self.app.get('/nonexistent')
-        self.assertEqual(response.status_code, 200)
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(FlaskAppTestCase)
@@ -35,3 +32,4 @@ if __name__ == '__main__':
         print("\n✅ ALL TESTS PASSED")
     else:
         print("\n❌ SOME TESTS FAILED")
+
