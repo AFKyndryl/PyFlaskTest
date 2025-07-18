@@ -11,7 +11,8 @@ menu_items = [
     {'id': 5, 'name': 'Linguine Pesto Genovese', 'description': 'Fresh basil pesto with pine nuts and Parmesan.', 'price': 8.5},
     {'id': 6, 'name': 'Tortellini alla Panna', 'description': 'Cheese-filled tortellini in a creamy ham sauce.', 'price': 9.2},
     {'id': 7, 'name': 'Tagliatelle Funghi', 'description': 'Mushroom medley in a garlic cream sauce.', 'price': 9.8},
-    {'id': 8, 'name': 'Gnocchi Sorrentina', 'description': 'Potato gnocchi baked with tomato sauce and mozzarella.', 'price': 8.9}
+    {'id': 8, 'name': 'Gnocchi Sorrentina', 'description': 'Potato gnocchi baked with tomato sauce and mozzarella.', 'price': 8.9},
+    {'id': 9, 'name': 'Drink', 'description': 'Unlimited refills from the machine.', 'price': 2.9},
 ]
 
 @app.route('/')
@@ -21,7 +22,6 @@ def home():
     total = sum(item['price'] for item in basket_items)
     return render_template('home.html', menu=menu_items,basket=basket_items, total=total)
 
-
 @app.route('/add/<int:item_id>', methods=['POST'])
 def add_to_basket(item_id):
     if 'basket' not in session:
@@ -29,7 +29,6 @@ def add_to_basket(item_id):
     session['basket'].append(item_id)
     session.modified = True
     return redirect(url_for('home'))
-
 
 @app.route('/remove/<int:item_id>', methods=['POST'])
 def remove_from_basket(item_id):
@@ -39,4 +38,4 @@ def remove_from_basket(item_id):
     return redirect(url_for('home'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)

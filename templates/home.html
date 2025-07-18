@@ -11,12 +11,12 @@
         <h1>Pasta Orderer</h1>
     </div>
     <h2>Menu</h2>
-    <div class="menu">
+    <div class="items-list">
         {% for i in menu %}
-        <div class="menu-item">
+        <div class="each-item">
             <h3>{{i.name}}</h3>
             <p>{{i.description}}</p>
-            <p>£{{i.price}}</p>
+            <p>£{{"%.2f"|format(i.price)}}</p>
             <form action="{{ url_for('add_to_basket', item_id=i.id) }}" method="post">
                 <button type="submit">Add to Basket</button>
             </form>
@@ -25,9 +25,9 @@
     </div>
     <h2>Basket</h2>
     <p class="total">Total: {{total}}</p>
-    <div class="basket">
+    <div class="items-list">
         {% for i in basket %}
-        <div class="basket-item">
+        <div class="each-item">
             <h3>{{i.name}}</h3>
             <p>{{i.description}}</p>
             <p>{{i.price}}</p>
