@@ -27,6 +27,11 @@
     border-radius: 10% 10% 0% 0%;
 }
 
+.item-name {
+    display: flex;
+    justify-content: center;
+}
+
 .item-info {
     display: flex;
     align-items: center;
@@ -40,6 +45,7 @@
 button {
     border: none;
     background-color: #92a8d1;
+    font-size: 14pt;
 }
 
 button:hover {
