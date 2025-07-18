@@ -1,7 +1,7 @@
 from flask import Flask, render_template, session, redirect, url_for
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'
+app.secret_key = 'your_secret_key' 
 
 menu_items = [
     {'id': 1, 'name': 'Spaghetti Carbonara', 'description': 'Creamy egg-based sauce with pancetta, black pepper, and Parmesan.', 'price': 9.5},
